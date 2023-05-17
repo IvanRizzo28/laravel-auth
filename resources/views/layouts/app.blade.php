@@ -42,9 +42,12 @@
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <!-- Left Side Of Navbar -->
-                        <ul class="navbar-nav me-auto">
-                            <li class="nav-item">
+                        <ul class="navbar-nav me-auto  d-flex justify-content-center align-items-center">
+                            <li class="nav-item me-1">
                                 <a class="nav-link" href="{{url('/') }}">{{ __('Home') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.dashboard') }}">{{ __('Dashboard') }}</a>
                             </li>
 
                         </ul>

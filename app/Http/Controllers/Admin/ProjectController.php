@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Project;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProjectRequest;
-use App\Models\Project;
-use Illuminate\Http\Request;
+use App\Http\Requests\UpdateProjectRequest;
 
 class ProjectController extends Controller
 {
@@ -38,8 +40,9 @@ class ProjectController extends Controller
     public function store(StoreProjectRequest $request)
     {
         $data=$request->validated();
+        $data=array_merge($data,['slug'=>Str::slug($data['title'])]);
         Project::create($data);
-        return to_route('admin.dashboard');
+        return redirect()->route('admin.dashboard')->with('message','Project aggiunto con successo');
     }
 
     /**
@@ -48,9 +51,10 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        $data=Project::findOrFail($id);
+        $data=Project::where('slug',$slug)->first();
+        if(!$data) abort(404);
         return view('admin.project.show',compact('data'));
     }
 
@@ -62,7 +66,8 @@ class ProjectController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data=Project::findOrFail($id);
+        return view('admin.project.edit',compact('data'));
     }
 
     /**
@@ -72,9 +77,13 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateProjectRequest $request, $id)
     {
-        //
+        $data=$request->validated();
+        $item=Project::findOrFail($id);
+        $data=array_merge($data,['slug'=>Str::slug($data['title'])]);
+        $item->update($data);
+        return to_route('admin.dashboard')->with('edit','Il Project è stato eliminato con successo');
     }
 
     /**
@@ -85,6 +94,7 @@ class ProjectController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Project::destroy($id);
+        return redirect()->route('admin.dashboard')->with('delete','Project cancellato con successo');
     }
 }

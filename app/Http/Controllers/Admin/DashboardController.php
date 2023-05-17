@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 class DashboardController extends Controller
 {
     public function index(){
-        $data=Project::orderBy('updated_at')->get();
+        $data=Project::orderBy('updated_at','DESC')->get();
 
         return view('admin.dashboard',compact('data'));
     }

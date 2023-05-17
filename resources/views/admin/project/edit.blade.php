@@ -11,19 +11,20 @@
                 </ul>
             </div>
         @endif
-        <form action="{{ route('admin.project.store') }}" method="POST">
+        <form action="{{ route('admin.project.update',$data->id) }}" method="POST">
             @csrf
+            @method('PUT')
             <div class="mb-3">
                 <label for="title" class="form-label">{{ __('Title') }}</label>
-                <input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}">
+                <input type="text" class="form-control" id="title" name="title" value="{{ old('title',$data->title) }}">
             </div>
             <div class="mb-3">
                 <label for="description" class="form-label">{{ __('Description') }}</label>
-                <textarea class="form-control" id="description" name="description" rows="3">{{ old('description') }}</textarea>
+                <textarea class="form-control" id="description" name="description" rows="3">{{ old('description',$data->description) }}</textarea>
             </div>
             <div class="mb-3">
                 <label for="language" class="form-label">{{ __('Language') }}</label>
-                <input type="text" class="form-control" id="language" name="language" value="{{ old('language') }}">
+                <input type="text" class="form-control" id="language" name="language" value="{{ old('language',$data->language) }}">
             </div>
 
             <button type="submit" class="btn btn-primary">{{ __('Add') }}</button>

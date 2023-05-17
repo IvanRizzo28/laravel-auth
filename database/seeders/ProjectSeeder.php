@@ -3,9 +3,10 @@
 namespace Database\Seeders;
 
 use App\Models\Project;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 use Faker\Generator as Faker;
+use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class ProjectSeeder extends Seeder
 {
@@ -24,6 +25,7 @@ class ProjectSeeder extends Seeder
             $tmp->title=$faker->sentence(3);
             $tmp->description=$faker->paragraph();
             $tmp->language=$faker->randomElement($language).", ".$faker->randomElement($language);
+            $tmp->slug=Str::slug($tmp->title);
             $tmp->save();
         }
     }

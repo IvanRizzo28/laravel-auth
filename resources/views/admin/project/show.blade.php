@@ -10,7 +10,7 @@
                         <p class="card-text">{{ $data->description }}</p>
                         <span class="d-block mb-1 fw-bold">{{ __('Languages') }}:</span>
                         <span class="d-block mb-4">{{ $data->language }}</span>
-                        <button type="button" class="btn btn-warning w-100">{{ __('Modify') }}</button>
+                        <a type="button" href="{{ route('admin.project.edit',$data->id) }}" class="btn btn-warning w-100">{{ __('Edit') }}</a>
                     </div>
                 </div>
             </div>
