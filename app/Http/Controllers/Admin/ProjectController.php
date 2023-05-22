@@ -6,6 +6,7 @@ use App\Models\Project;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 
@@ -41,6 +42,10 @@ class ProjectController extends Controller
     {
         $data=$request->validated();
         $data=array_merge($data,['slug'=>Str::slug($data['title'])]);
+        if(isset($data['image'])){
+            $data['image']=Storage::put('uploads',$data['image']);
+        }
+        dd($data);
         Project::create($data);
         return redirect()->route('admin.dashboard')->with('message','Project aggiunto con successo');
     }

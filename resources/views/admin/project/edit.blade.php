@@ -11,7 +11,7 @@
                 </ul>
             </div>
         @endif
-        <form action="{{ route('admin.project.update',$data->id) }}" method="POST">
+        <form action="{{ route('admin.project.update',$data->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="mb-3">
@@ -25,6 +25,10 @@
             <div class="mb-3">
                 <label for="language" class="form-label">{{ __('Language') }}</label>
                 <input type="text" class="form-control" id="language" name="language" value="{{ old('language',$data->language) }}">
+            </div>
+            <div class="mb-3">
+                <label for="image" class="form-label">Image</label>
+                <input class="form-control" type="file" id="image" name="image">
             </div>
 
             <button type="submit" class="btn btn-primary">{{ __('Add') }}</button>

@@ -5,7 +5,11 @@
         <div class="row justify-content-center align-items-center">
             <div class="col-12 col-md-8">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body ">
+                        <div class="w-50 mb-2">
+                            <img src="{{ asset('storage/'.$data->image) }}" alt="{{ $data->title }}" class="w-100" style="">
+                        </div>
+
                         <h5 class="card-title">{{ $data->title }}</h5>
                         <p class="card-text">{{ $data->description }}</p>
                         <span class="d-block mb-1 fw-bold">{{ __('Languages') }}:</span>
