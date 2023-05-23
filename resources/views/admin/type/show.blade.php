@@ -14,18 +14,9 @@
                         @endif
 
 
-                        <h5 class="card-title">{{ $data->title }}</h5>
-                        <p class="card-text">{{ $data->description }}</p>
-                        <span class="d-block mb-1 fw-bold">{{ __('Languages') }}:</span>
-                        <span class="d-block mb-4">{{ $data->language }}</span>
-                        <span class="d-block mb-1 fw-bold">{{ __('Type') }}:</span>
-                        @if ($data->type)
-                        <span class="d-block mb-4">{{ $data->type->name }}</span>
-                        @else
-                        <span class="d-block mb-4">Nessuna categoria</span>
-                        @endif
-
-                        <a type="button" href="{{ route('admin.project.edit', $data->id) }}"
+                        <h5 class="card-title">{{ $data->name }}</h5>
+                        <p class="card-text">{{ $data->slug }}</p>
+                        <a type="button" href="{{ route('admin.type.edit', $data->id) }}"
                             class="btn btn-warning w-100">{{ __('Edit') }}</a>
                     </div>
                 </div>

@@ -20,6 +20,12 @@ return new class extends Migration
             $table->text('language');
             $table->string('image')->nullable();
             $table->string('slug',50)->unique();
+            $table->unsignedBigInteger('type_id')->nullable();
+
+            $table->foreign('type_id')
+                ->references('id')
+                ->on('types')
+                ->nullOnDelete();
             $table->timestamps();
         });
     }

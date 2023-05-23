@@ -49,6 +49,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('admin.dashboard') }}">{{ __('Dashboard') }}</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.type.index') }}">{{ __('Type') }}</a>
+                            </li>
 
                         </ul>
 
